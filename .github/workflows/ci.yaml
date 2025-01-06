@@ -1,0 +1,20 @@
+name: ci-workflow
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+jobs:
+  linting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome Message :)
+        run: echo "Hemllo from CI Pipeline"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Installing HTML Lintter
+        run: npm install --save-dev htmlhint
+      - name: Run Html Linter
+        run: npx htmlhint "**/*.html"
